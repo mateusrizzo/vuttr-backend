@@ -3,7 +3,7 @@ Very Useful Tools to Remember é uma um repositório onde você pode armazenar f
 O projeto foi feito com NodeJS e MongoDB.
 Para rodar o código na sua máquina, é necessário clonar o repositório:
 
-git clone https://github.com/mateusrizzo/vuttr-backend.git
+`git clone https://github.com/mateusrizzo/vuttr-backend.git`
 
 Use o comando `yarn` para instalar as dependencias. 
 
