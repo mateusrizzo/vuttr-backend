@@ -1,4 +1,4 @@
-import Tool from '../models/Tool';
+import Tool from '../models/Tool.js';
 
 export default class ToolsController {
 	async store(request, response) {

@@ -1,4 +1,6 @@
-import {Schema, Model} from 'mongoose';
+import mongoose from 'mongoose';
+
+const {Schema, model} = mongoose;
 
 const ToolSchema = new Schema({
 	title: String,
@@ -7,4 +9,4 @@ const ToolSchema = new Schema({
 	tags: [String],
 });
 
-export default Model('Tool', ToolSchema);
+export default model('Tool', ToolSchema);
