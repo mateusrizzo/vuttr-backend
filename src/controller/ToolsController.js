@@ -26,4 +26,11 @@ export default class ToolsController {
 		}
 		response.status(200).json(foundTools);
 	}
+	async delete(request, response){
+		const {id} = request.params;
+
+		await Tool.findByIdAndDelete(id);
+
+		response.status(204).json();
+	}
 }
