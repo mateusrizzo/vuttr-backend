@@ -1,0 +1,173 @@
+{
+	"openapi": "3.0.0",
+	"info": {
+		"version": "1.0.0",
+		"title": "Very Useful Tools to Remember",
+		"description": "A simple API made for storing useful tools for reference",
+		"licence": {
+			"name": "MIT"
+		}
+	},
+	"servers":[
+		{
+			"url": "http://localhost:3000",
+			"description": "local development server",
+			"port": "3000"
+		}
+	],
+	"basePath": "/",
+	"schemes": [
+		"http"
+	],
+	"consumes": [
+		"application/json"
+	],
+	"produces": [
+		"application/json"
+	],
+	"paths": {
+		"/tools": {
+			"get": {
+				"description": "Returns all the stored tools the user has",
+				"operationId": "listTools",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "tag",
+						"in": "query",
+						"description": "tag for filtering tools",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "List of saved tools",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/Tool"
+							}
+						}
+					},
+					"404": {
+						"description": "Tag was not found in the database",
+						"schema": {
+							"$ref": "#/definitions/Error"
+						}
+					},
+					"default": {
+						"description": "unexpected error",
+						"schema": {
+							"$ref": "#/definitions/Error"
+						}
+					}
+				}
+			},
+			"post": {
+				"description": "Creates a new tool on the database",
+				"operationId": "addTool",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "tool",
+						"in": "body",
+						"description": "Tool to add to database",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Tool"
+						}
+					}
+				],
+				"responses": {
+					"201": {
+						"description": "Tool sucessfully created",
+						"schema": {
+							"$ref": "#/definitions/Tool"
+						}
+					},
+					"default": {
+						"description": "unexpected error",
+						"schema": {
+							"$ref": "#/definitions/Error"
+						}
+					}
+				}
+			}
+		}
+	},
+	"/tools/{id}": {
+		"delete": {
+			"description": "Deletes a tool from the database based on the ID",
+			"operationId": "deleteTool",
+			"parameters": [
+				{
+					"name": "id",
+					"in": "path",
+					"description": "ID of the tool for deletion",
+					"required": true,
+					"type": "integer",
+					"format": "int64"
+				}
+			],
+			"responses": {
+				"204": {
+					"description": "Tool successfully deleted"
+				},
+				"default": {
+					"description": "unexpected error",
+					"schema": {
+						"$ref": "#/definitions/Error"
+					}
+				}
+			}
+		}
+	},
+	"definitions": {
+		"Tool": {
+			"type": "object",
+			"properties": {
+				"_id": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"title": {
+					"type": "string"
+				},
+				"description": {
+					"type": "string"
+				},
+				"link": {
+					"type": "string"
+				},
+				"tags": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				}
+			}
+		},
+		"Error": {
+			"type": "object",
+			"required": [
+				"code",
+				"message"
+			],
+			"properties": {
+				"code": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"message": {
+					"type": "string"
+				}
+			}
+		}
+	}
+
+}
