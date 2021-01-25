@@ -1,5 +1,7 @@
-const express = require('express');
-const mongoose = require('mongoose');
+import express from 'express';
+import mongoose from 'mongoose';
+
+import routes from './routes/index.js';
 
 const app = express();
 
@@ -9,6 +11,7 @@ mongoose.connect(
 );
 
 app.use(express.json());
+app.use(routes);
 
 app.listen(3000, () => {
 	console.log('server running on port 3000!')
