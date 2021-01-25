@@ -11,4 +11,13 @@ export default class ToolsController {
 		});
 		response.status(201).json(newTool);
 	}
+	async find(request, response) {
+		const {tag} = request.query;
+		const foundTools = await Tool.find({tags: tag});
+
+		if (foundTools.length == 0){
+			return response.status(404).json({error: 'Tool not found'});
+		}
+		response.status(200).json(foundTools);
+	}
 }
