@@ -1,4 +1,4 @@
-const {Schema, Model} = require('mongoose');
+import {Schema, Model} from 'mongoose';
 
 const ToolSchema = new Schema({
 	title: String,
@@ -7,4 +7,4 @@ const ToolSchema = new Schema({
 	tags: [String],
 });
 
-module.exports = Model('Tool', ToolSchema);
+export default Model('Tool', ToolSchema);
