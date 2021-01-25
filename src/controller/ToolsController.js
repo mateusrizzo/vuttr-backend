@@ -29,6 +29,10 @@ export default class ToolsController {
 	async delete(request, response){
 		const {id} = request.params;
 
+		if (!id) {
+			return response.status(400).json({error: 'Item id is required!'})
+		}
+
 		await Tool.findByIdAndDelete(id);
 
 		response.status(204).json();
