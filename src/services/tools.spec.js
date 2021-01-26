@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import CreateToolService from './CreateToolService.js';
 import ListToolService from './ListToolsService.js';
 
+
 let createTool;
 let listTool;
 
@@ -94,6 +95,28 @@ describe('Tools', () => {
 		expect(toolList).toHaveLength(2);
 	})
 	it('should not be able to find a tool with a unexistent tag', async () => {
-		
+		const mockTool1 = {
+			title: 'some_title', 
+			link: 'somelink.com', 
+			description: 'some very descriptive description', 
+			tags: ['randomtag', 'test', 'mock', 'fake']
+		}
+		const mockTool2 = {
+			title: 'some_title', 
+			link: 'somelink.com', 
+			description: 'some very descriptive description', 
+			tags: ['randomtag', 'test', 'mock', 'fake']
+		}
+		const mockTool3 = {
+			title: 'some_title', 
+			link: 'somelink.com', 
+			description: 'some very descriptive description', 
+			tags: ['randomtag', 'test', 'mock', 'fake']
+		}
+		await createTool.execute(mockTool1);
+		await createTool.execute(mockTool2);
+		await createTool.execute(mockTool3);
+
+		await expect(listTool.execute('inexistenttag')).rejects.toBeInstanceOf(Error);
 	})
 });
