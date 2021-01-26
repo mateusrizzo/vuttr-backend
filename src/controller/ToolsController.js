@@ -20,8 +20,8 @@ export default class ToolsController {
 		try{
 			const toolsList = await listTools.execute(tag);
 			response.status(200).json(toolsList);
-		} catch(err) {
-			response.json(err);
+		} catch(error) {
+			response.status(404).json(error.toString());
 		}
 	}
 	async delete(request, response){
@@ -30,9 +30,8 @@ export default class ToolsController {
 		try{
 			await deleteTool.execute(id);
 			response.status(204).json();
-		} catch(err) {
-			console.log(err)
-			response.status(400).json(err);
+		} catch(error) {
+			response.status(400).json(error.toString());
 		}
 	}
 }
