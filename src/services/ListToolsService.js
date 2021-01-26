@@ -5,13 +5,13 @@ export default class ListToolsService{
 		
 		if (!tag) {
 			const foundTools = await Tool.find();
-			return response.status(200).json(foundTools)
+			return foundTools;
 		}
 
 		const foundTools = await Tool.find({tags: tag});
 
 		if (foundTools.length == 0){
-			return response.status(404).json({error: 'Tool not found'});
+			throw new Error('Tool not found', 404);
 		}
 
 		return foundTools;
