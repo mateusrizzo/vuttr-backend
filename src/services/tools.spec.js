@@ -25,7 +25,6 @@ describe('Tools', () => {
 	})
 
 	afterAll(async () => {
-		await mongoose.connection.db.dropDatabase('test');
 		await connection.close();
 	});
 
@@ -67,4 +66,34 @@ describe('Tools', () => {
 
 		expect(toolList).toHaveLength(3);
 	});
+	it('should be able to search for specific tools based on a tag', async () => {
+		const mockTool1 = {
+			title: 'some_title', 
+			link: 'somelink.com', 
+			description: 'some very descriptive description', 
+			tags: ['specifictag', 'test', 'mock', 'fake']
+		}
+		const mockTool2 = {
+			title: 'some_title', 
+			link: 'somelink.com', 
+			description: 'some very descriptive description', 
+			tags: ['specifictag', 'test', 'mock', 'fake']
+		}
+		const mockTool3 = {
+			title: 'some_title', 
+			link: 'somelink.com', 
+			description: 'some very descriptive description', 
+			tags: ['randomtag', 'test', 'mock', 'fake']
+		}
+		await createTool.execute(mockTool1);
+		await createTool.execute(mockTool2);
+		await createTool.execute(mockTool3);
+
+		const toolList = await listTool.execute('specifictag');
+
+		expect(toolList).toHaveLength(2);
+	})
+	it('should not be able to find a tool with a unexistent tag', async () => {
+		
+	})
 });
