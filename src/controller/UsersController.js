@@ -1,3 +1,5 @@
+import CreateUserService from '../services/CreateUserService.js';
+
 export default class UsersController {
 	async store(request, response){
 		const {username, password} = request.body;
