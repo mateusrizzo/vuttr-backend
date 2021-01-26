@@ -1,4 +1,3 @@
-import Tool from '../models/Tool.js';
 import CreateToolService from '../services/CreateToolService.js';
 import ListToolsService from '../services/ListToolsService.js';
 import DeleteToolsService from '../services/DeleteToolsService.js';
