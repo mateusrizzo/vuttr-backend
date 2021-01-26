@@ -1,6 +1,7 @@
 import Tool from '../models/Tool.js';
 import CreateToolService from '../services/CreateToolService.js';
-import ListToolsService from '../services/ListToolsService.js'
+import ListToolsService from '../services/ListToolsService.js';
+import DeleteToolsService from '../services/DeleteToolsService.js';
 
 export default class ToolsController {
 	async store(request, response) {
@@ -22,13 +23,8 @@ export default class ToolsController {
 	}
 	async delete(request, response){
 		const {id} = request.params;
-
-		if (!id) {
-			return response.status(400).json({error: 'Item id is required!'})
-		}
-
-		await Tool.findByIdAndDelete(id);
-
+		const deleteTool = new DeleteToolsService();
+		deleteTool.execute(id);
 		response.status(204).json();
 	}
 }
