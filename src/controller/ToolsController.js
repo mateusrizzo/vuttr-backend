@@ -1,14 +1,16 @@
 import Tool from '../models/Tool.js';
+import CreateToolService from '../services/CreateToolService.js';
 
 export default class ToolsController {
 	async store(request, response) {
 		const {title, link, description, tags} = request.body;
-		const newTool = await Tool.create({
+		const createTool = new CreateToolService();
+		const newTool = createTool.execute({
 			title,
 			link,
 			description,
 			tags
-		});
+		})
 		response.status(201).json(newTool);
 	}
 	async find(request, response) {
