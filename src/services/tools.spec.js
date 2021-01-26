@@ -198,6 +198,6 @@ describe('Tools', () => {
 		await createTool.execute(mockTool2);
 		await createTool.execute(mockTool3);
 
-		await expect(deleteTool.execute('invalid_id')).rejects.toBeInstanceOf(Error);
+		await expect(deleteTool.execute('601063e45d31f57d07c1b517')).rejects.toBeInstanceOf(Error);
 	})
 });
