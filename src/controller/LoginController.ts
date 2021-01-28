@@ -1,7 +1,9 @@
+import {Request, Response} from 'express';
+
 import AuthenticateUserService from '../services/AuthenticateUserService'
 
 export default class LoginController {
-	async create(request, response){
+	async create(request: Request, response: Response){
 		const {username, password} = request.body;
 		const authenticateUser = new AuthenticateUserService();
 		try{

@@ -1,9 +1,11 @@
+import {Request, Response} from 'express';
+
 import CreateToolService from '../services/CreateToolService';
 import ListToolsService from '../services/ListToolsService';
 import DeleteToolsService from '../services/DeleteToolsService';
 
 export default class ToolsController {
-	async store(request, response) {
+	async store(request: Request, response: Response) {
 		const {title, link, description, tags} = request.body;
 		const createTool = new CreateToolService();
 		const newTool = await createTool.execute({
@@ -14,7 +16,7 @@ export default class ToolsController {
 		})
 		response.status(201).json(newTool);
 	}
-	async find(request, response) {
+	async find(request: Request, response: Response) {
 		const {tag} = request.query;
 		const listTools = new ListToolsService();
 		try{
@@ -24,7 +26,7 @@ export default class ToolsController {
 			response.status(404).json(error.toString());
 		}
 	}
-	async delete(request, response){
+	async delete(request: Request, response: Response){
 		const {id} = request.params;
 		const deleteTool = new DeleteToolsService();
 		try{
