@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import Tool from '../models/Tool.js';
+import Tool from '../models/Tool';
 
 export default class DeleteToolsService{
 	async execute(id){

@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
-import CreateUserService from './CreateUserService.js';
-import AuthenticateUserService from './AuthenticateUserService.js';
+import CreateUserService from './CreateUserService';
+import AuthenticateUserService from './AuthenticateUserService';
 
 let createUser;
 let authenticateUser;
@@ -70,7 +70,7 @@ describe('Users', () => {
 
 		await createUser.execute(mockUser);
 
-		await expect(authenticateUser.execute({username: 'some_user', password: 'wrong_password'})).rejects.toBeInstanceOf(Error);
+		await expect(authenticateUser.execute({username: 'some user', password: 'wrong_password'})).rejects.toBeInstanceOf(Error);
 	})
 
 });

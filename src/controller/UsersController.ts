@@ -1,7 +1,9 @@
-import CreateUserService from '../services/CreateUserService.js';
+import {Request, Response} from 'express';
+
+import CreateUserService from '../services/CreateUserService';
 
 export default class UsersController {
-	async store(request, response){
+	async store(request: Request, response: Response){
 		const {username, password} = request.body;
 		const createUser = new CreateUserService();
 		const newUser = await createUser.execute({
