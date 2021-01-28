@@ -1,8 +1,8 @@
 import {Router} from 'express';
 
-import checkAuthentication from '../middlewares/checkAuthentication.js';
+import checkAuthentication from '../middlewares/checkAuthentication';
 
-import ToolsController from '../controller/ToolsController.js';
+import ToolsController from '../controller/ToolsController';
 
 const toolsRouter = Router();
 

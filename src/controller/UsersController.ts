@@ -1,4 +1,4 @@
-import CreateUserService from '../services/CreateUserService.js';
+import CreateUserService from '../services/CreateUserService';
 
 export default class UsersController {
 	async store(request, response){

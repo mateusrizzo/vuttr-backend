@@ -1,6 +1,6 @@
-import CreateToolService from '../services/CreateToolService.js';
-import ListToolsService from '../services/ListToolsService.js';
-import DeleteToolsService from '../services/DeleteToolsService.js';
+import CreateToolService from '../services/CreateToolService';
+import ListToolsService from '../services/ListToolsService';
+import DeleteToolsService from '../services/DeleteToolsService';
 
 export default class ToolsController {
 	async store(request, response) {

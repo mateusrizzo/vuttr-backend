@@ -1,4 +1,4 @@
-import AuthenticateUserService from '../services/AuthenticateUserService.js'
+import AuthenticateUserService from '../services/AuthenticateUserService'
 
 export default class LoginController {
 	async create(request, response){

@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
-import CreateToolService from './CreateToolService.js';
-import ListToolService from './ListToolsService.js';
-import DeleteToolsService from './DeleteToolsService.js';
+import CreateToolService from './CreateToolService';
+import ListToolService from './ListToolsService';
+import DeleteToolsService from './DeleteToolsService';
 
 let createTool;
 let listTool;

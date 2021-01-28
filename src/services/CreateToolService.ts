@@ -1,4 +1,4 @@
-import Tool from '../models/Tool.js';
+import Tool from '../models/Tool';
 
 export default class CreateToolService{
 	async execute({title, link, description, tags}) {

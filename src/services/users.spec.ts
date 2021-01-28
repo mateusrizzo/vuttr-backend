@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
-import CreateUserService from './CreateUserService.js';
-import AuthenticateUserService from './AuthenticateUserService.js';
+import CreateUserService from './CreateUserService';
+import AuthenticateUserService from './AuthenticateUserService';
 
 let createUser;
 let authenticateUser;

@@ -1,6 +1,6 @@
-import User from '../models/User.js';
+import User from '../models/User';
 import jsonwebtoken from 'jsonwebtoken';
-import authConfig from '../config/auth.js';
+import authConfig from '../config/auth';
 
 export default class AuthenticateUserService {
 	async execute({username, password}) {
