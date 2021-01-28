@@ -3,7 +3,7 @@
  * https://jestjs.io/docs/en/configuration.html
  */
 
-export default {
+module.exports = {
   // All imported modules in your tests should be mocked automatically
   // automock: false,
 
@@ -32,8 +32,17 @@ export default {
 
   // Indicates which provider should be used to instrument code for coverage
   coverageProvider: "v8",
-  preset: '@shelf/jest-mongodb',
+  preset: 'ts-jest',
   transform: {},
+  testMatch: [
+    "**/*.spec.ts"
+  ],
+  clearMocks: true,
+  collectCoverage: true,
+  collectCoverageFrom: [
+	  '<rootDir>/src/services/*.ts'
+  ]
+
 
   // A list of reporter names that Jest uses when writing coverage reports
   // coverageReporters: [

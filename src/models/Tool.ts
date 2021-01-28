@@ -1,5 +1,7 @@
 import {Schema, model} from 'mongoose';
 
+import IToolModel from '../@types/IToolModel';
+
 const ToolSchema = new Schema({
 	title: String,
 	link: String,
@@ -7,4 +9,4 @@ const ToolSchema = new Schema({
 	tags: [String],
 });
 
-export default model('Tool', ToolSchema);
+export default model<any, IToolModel>('Tool', ToolSchema);
