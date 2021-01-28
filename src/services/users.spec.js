@@ -49,7 +49,7 @@ describe('Users', () => {
 		const response = await authenticateUser.execute(mockUser);
 
 		expect(response).toHaveProperty('token');
-		expect(response.user).toEqual(user);
+		expect(response.user.username).toEqual(user.username);
 	})
 
 });
