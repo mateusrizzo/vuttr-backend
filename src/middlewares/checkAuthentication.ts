@@ -1,9 +1,15 @@
-import jsonwebtoken from 'jsonwebtoken';
+import {Request, Response, NextFunction} from 'express';
+import {verify} from 'jsonwebtoken';
 import authConfig from '../config/auth';
 
-export default function checkAuthentication(request, response, next) {
+interface TokenPayload {
+	iat: number;
+	exp: number;
+	sub: string;
+}
+
+export default function checkAuthentication(request: Request, response: Response, next: NextFunction) {
 	const authHeader = request.headers.authorization;
-	const { verify } = jsonwebtoken;
 
 	if (!authHeader) {
 		throw new Error('Authentication token is missing');
@@ -14,9 +20,11 @@ export default function checkAuthentication(request, response, next) {
 	try{
 		const decoded = verify(token, authConfig.jwt.secret);
 
-		const {sub} = decoded;
+		const {sub} = decoded as TokenPayload;
 
-		request.headers.user_id = sub;
+		request.user = {
+			id: sub
+		};
 
 		return next();
 	} catch {
