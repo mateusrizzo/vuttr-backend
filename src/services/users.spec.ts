@@ -70,7 +70,7 @@ describe('Users', () => {
 
 		await createUser.execute(mockUser);
 
-		await expect(authenticateUser.execute({username: 'some_user', password: 'wrong_password'})).rejects.toBeInstanceOf(Error);
+		await expect(authenticateUser.execute({username: 'some user', password: 'wrong_password'})).rejects.toBeInstanceOf(Error);
 	})
 
 });
