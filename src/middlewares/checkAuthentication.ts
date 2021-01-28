@@ -26,8 +26,6 @@ export default function checkAuthentication(request: Request, response: Response
 			id: sub.replace(/^"(.*)"$/, '$1')
 		};
 
-		console.log(request.user.id);
-
 		return next();
 	} catch {
 		throw new Error('Invalid JWT token');
