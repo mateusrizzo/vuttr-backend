@@ -1,9 +1,9 @@
 export default class LoginController {
 	async create(request, response){
 		const {username, password} = request.body;
-		const createLogin = new CreateLoginService();
+		const authenticateUser = new AuthenticateUserService();
 		try{
-			const login = await createLogin.execute({
+			const login = await authenticateUser.execute({
 				username,
 				password
 			})
