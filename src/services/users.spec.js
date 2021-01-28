@@ -52,4 +52,25 @@ describe('Users', () => {
 		expect(response.user.username).toEqual(user.username);
 	})
 
+	it('should not be able to authenticate a user with a invalid username', async () => {
+		const mockUser = {
+			username: 'some user',
+			password: '1234'
+		}
+
+		await createUser.execute(mockUser);
+
+		await expect(authenticateUser.execute({username: 'invalid_user', password: '1234'})).rejects.toBeInstanceOf(Error);
+	})
+	it('should not be able to authenticate a user with invalid password', async () => {
+		const mockUser = {
+			username: 'some user',
+			password: '1234'
+		}
+
+		await createUser.execute(mockUser);
+
+		await expect(authenticateUser.execute({username: 'some_user', password: 'wrong_password'})).rejects.toBeInstanceOf(Error);
+	})
+
 });
