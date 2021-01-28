@@ -1,3 +1,5 @@
+import AuthenticateUserService from '../services/AuthenticateUserService.js'
+
 export default class LoginController {
 	async create(request, response){
 		const {username, password} = request.body;
