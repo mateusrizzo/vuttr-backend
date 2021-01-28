@@ -15,16 +15,18 @@ export default function checkAuthentication(request: Request, response: Response
 		throw new Error('Authentication token is missing');
 	}
 
-	const [ , token] = authHeader.split(' ');
+	const [, token] = authHeader.split(' ');
 
 	try{
 		const decoded = verify(token, authConfig.jwt.secret);
 
-		const {sub} = decoded as TokenPayload;
+		const { sub } = decoded as TokenPayload;
 
 		request.user = {
-			id: sub
+			id: sub.replace(/^"(.*)"$/, '$1')
 		};
+
+		console.log(request.user.id);
 
 		return next();
 	} catch {

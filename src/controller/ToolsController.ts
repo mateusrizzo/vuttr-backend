@@ -4,15 +4,18 @@ import CreateToolService from '../services/CreateToolService';
 import ListToolsService from '../services/ListToolsService';
 import DeleteToolsService from '../services/DeleteToolsService';
 
+
 export default class ToolsController {
 	async store(request: Request, response: Response) {
 		const {title, link, description, tags} = request.body;
+		const user_id = request.user.id;
 		const createTool = new CreateToolService();
 		const newTool = await createTool.execute({
 			title,
 			link,
 			description,
-			tags
+			tags,
+			user_id
 		})
 		response.status(201).json(newTool);
 	}
