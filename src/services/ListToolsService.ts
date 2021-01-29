@@ -1,14 +1,19 @@
 import Tool from '../models/Tool';
 
 export default class ListToolsService{
-	async execute(tag) {
+	async execute(user_id: string, tag?: string) {
+
+		const toolsByUser = await Tool.find({user: user_id});
 		
 		if (!tag) {
-			const foundTools = await Tool.find();
-			return foundTools;
+			return toolsByUser;
 		}
 
-		const foundTools = await Tool.find({tags: tag});
+		const foundTools = toolsByUser.filter((tool) => {
+			if (tool.tags.includes(tag)) {
+				return tool;
+			}
+		});
 
 		if (foundTools.length == 0){
 			throw new Error('Tool not found');
