@@ -13,8 +13,6 @@ interface ITool {
 export default class CreateToolService{
 	async execute({title, link, description, tags, user_id}: ITool) {
 
-		console.log(mongoose.Types.ObjectId(user_id));
-
 		const newTool = await Tool.create({
 			title,
 			link,

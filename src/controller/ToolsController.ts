@@ -21,9 +21,10 @@ export default class ToolsController {
 	}
 	async find(request: Request, response: Response) {
 		const {tag} = request.query;
+		const user_id = request.user.id;
 		const listTools = new ListToolsService();
 		try{
-			const toolsList = await listTools.execute(tag);
+			const toolsList = await listTools.execute(JSON.stringify(tag), user_id);
 			response.status(200).json(toolsList);
 		} catch(error) {
 			response.status(404).json(error.toString());
