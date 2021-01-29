@@ -2,12 +2,10 @@ import mongoose from 'mongoose';
 import Tool from '../models/Tool';
 
 export default class DeleteToolsService{
-	async execute(id){
+	async execute(id: string, user_id: string){
 
 		if (!id) {
-			return Promise.reject().catch(err => {
-				throw new Error('Tool ID is required!');
-			})
+			throw new Error('Tool ID is required!');
 		}
 		const isIdValid = mongoose.Types.ObjectId.isValid(id);
 
@@ -15,10 +13,14 @@ export default class DeleteToolsService{
 			throw new Error('Invalid tool ID!');
 		}
 
-		const toolForDeletion = await Tool.exists({_id: id});
+		const toolForDeletion = await Tool.findOne({_id: id});
 
-		if(toolForDeletion === false){
+		if(!toolForDeletion){
 			throw new Error('Tool not found!');
+		}
+
+		if(toolForDeletion.user != user_id){
+			throw new Error("You don't have the credentials to delete this tool")
 		}
 
 		await Tool.findByIdAndDelete(id);

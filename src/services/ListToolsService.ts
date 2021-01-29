@@ -5,7 +5,7 @@ export default class ListToolsService{
 
 		const toolsByUser = await Tool.find({user: user_id});
 		
-		if (tag === 'invalid') {
+		if (!tag) {
 			return toolsByUser;
 		}
 

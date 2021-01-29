@@ -32,9 +32,10 @@ export default class ToolsController {
 	}
 	async delete(request: Request, response: Response){
 		const {id} = request.params;
+		const user_id = request.user.id;
 		const deleteTool = new DeleteToolsService();
 		try{
-			await deleteTool.execute(id);
+			await deleteTool.execute(id, user_id);
 			response.status(204).json();
 		} catch(error) {
 			response.status(400).json(error.toString());
