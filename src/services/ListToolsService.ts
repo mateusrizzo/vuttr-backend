@@ -1,7 +1,7 @@
 import Tool from '../models/Tool';
 
 export default class ListToolsService{
-	async execute(tag: string, user_id: string) {
+	async execute(user_id: string, tag?: string) {
 
 		const toolsByUser = await Tool.find({user: user_id});
 		

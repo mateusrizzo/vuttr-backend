@@ -24,7 +24,7 @@ export default class ToolsController {
 		const user_id = request.user.id;
 		const listTools = new ListToolsService();
 		try{
-			const toolsList = await listTools.execute(String(tag), user_id);
+			const toolsList = await listTools.execute(user_id, String(tag));
 			response.status(200).json(toolsList);
 		} catch(error) {
 			response.status(404).json(error.toString());

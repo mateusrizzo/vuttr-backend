@@ -3,10 +3,7 @@ import Tool from '../models/Tool';
 
 export default class DeleteToolsService{
 	async execute(id: string, user_id: string){
-
-		if (!id) {
-			throw new Error('Tool ID is required!');
-		}
+		
 		const isIdValid = mongoose.Types.ObjectId.isValid(id);
 
 		if (isIdValid === false) {
