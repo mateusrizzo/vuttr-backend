@@ -11,7 +11,7 @@ interface IUser {
 
 export default class AuthenticateUserService {
 	async execute({username, password}: IUser) {
-		const user = await User.findOne({username});
+		const user: IUserModel = await User.findOne({username});
 
 		if(!user) {
 			throw new Error('Incorrect username and/or password');

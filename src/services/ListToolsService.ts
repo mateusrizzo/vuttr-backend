@@ -4,8 +4,10 @@ export default class ListToolsService{
 	async execute(tag: string, user_id: string) {
 
 		const toolsByUser = await Tool.find({user: user_id});
+
+		const parsedTag = tag.replace(/^"(.*)"$/, '$1')
 		
-		if (!tag) {
+		if (parsedTag === 'invalid') {
 			return toolsByUser;
 		}
 
