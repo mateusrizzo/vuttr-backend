@@ -98,30 +98,103 @@
 					}
 				}
 			}
-		}
-	},
-	"/tools/{id}": {
-		"delete": {
-			"description": "Deletes a tool from the database based on the ID",
-			"operationId": "deleteTool",
-			"parameters": [
-				{
-					"name": "id",
-					"in": "path",
-					"description": "ID of the tool for deletion",
-					"required": true,
-					"type": "integer",
-					"format": "int64"
+		},
+		"/tools/{id}": {
+			"delete": {
+				"description": "Deletes a tool from the database based on the ID",
+				"operationId": "deleteTool",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "ID of the tool for deletion",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"204": {
+						"description": "Tool successfully deleted"
+					},
+					"default": {
+						"description": "unexpected error",
+						"schema": {
+							"$ref": "#/definitions/Error"
+						}
+					}
 				}
-			],
-			"responses": {
-				"204": {
-					"description": "Tool successfully deleted"
-				},
-				"default": {
-					"description": "unexpected error",
-					"schema": {
-						"$ref": "#/definitions/Error"
+			}
+		},
+		"/users": {
+			"post": {
+				"description": "Creates a new tool on the database",
+				"operationId": "addUser",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "user",
+						"in": "body",
+						"description": "user to add to database",
+						"required": true,
+						"schema": {
+							"$ref": "#definitions/User"
+						}
+					}
+				],
+				"responses": {
+					"201": {
+						"description": "User sucessfully created",
+						"schema": {
+							"$ref": "#definitions/User"
+						}
+					},
+					"default": {
+						"description": "unexpected error",
+						"schema": {
+							"$ref": "#/definitions/Error"
+						}
+					}
+				}
+			}
+		},
+		"/login": {
+			"post": {
+				"description": "Generates a auth token for the user",
+				"operationId": "login",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "user",
+						"in": "body",
+						"description": "User to search on the database and login",
+						"required": true,
+						"schema": {
+							"$ref": "#definitions/User"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "User logged in",
+						"schema": {
+							"$ref": "#definitions/User",
+							"token": {
+								"type": "http",
+								"scheme": "bearer",
+								"bearerFormat": "JWT"
+							}
+						}
+					},
+					"default": {
+						"description":"unexpected error",
+						"schema": {
+							"$ref":"#/definitions/Error"
+						}
 					}
 				}
 			}
